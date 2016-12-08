@@ -1,0 +1,121 @@
+/* Import WebFonts for use */
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,900);
+
+/* Standard image sizes
+Hero Image: 1280x450px
+Highlight image: 635x450px
+Snippet Image: 371x225px
+Post Image: 1115x450px
+*/
+
+/* Set up SASS variables */
+$font-stack: Raleway, Helvetica, sans-serif;
+$font-size: 1.2em;    /* Assumes 1em = 16px; Used for normal text. Scaled up for e.g. headers */
+$text-color: #000;
+
+$primary-color: #03A9F4;   // Material design palette
+$secondary-color: #06c;    // Custom color
+$complement-color: #bbb;     // For minor titles, etc
+$subtle-color: #eee;     // For background shading etc
+
+$spacing: 8px;
+
+$standard-curve: cubic-bezier(0.4, 0.0, 0.2, 1);  // From Material design guidelines
+
+// Animations
+
+@keyframes fade-in {
+	from{ opacity: 0;}
+	to{ opacity: 1; }
+}
+
+// Mobile <480
+@media screen and (min-width: 480px){
+	body{
+		font-family: $font-stack;
+		font-weight: 400;
+		margin: 0;
+		padding: 0;
+	    font-size: $font-size;
+	    background: $subtle-color;
+	    color: $text-color;
+	}
+	#header{
+		#blog-title{
+ 			padding-left: 2*$spacing;
+			animation-name: fade-in;
+			animation-iteration-count: 1;
+			animation-timing-function: $standard-curve;
+			animation-duration: 400ms;
+		}
+		#nav{
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding: $spacing;
+			margin: 0;
+			IMG { opacity: 0.6;}
+			IMG:hover { opacity: 1; }
+		}
+	}
+	#main{
+		box-sizing: border-box;
+		width: 100%;
+		
+		#hero-image{
+
+		}
+		.card-list{
+			.card-highlight-container{
+				.card-content{
+					.title{
+
+					}
+					.meta{
+
+					}
+					.wrapper{
+
+					}
+					.read-more{
+
+					}
+
+				}
+				.card-image{
+
+				}
+			}
+
+			.card-snippet-container{
+				.card-content{
+					.title{
+
+					}
+					.meta{
+
+					}
+					.wrapper{
+
+					}
+					.read-more{
+						
+					}
+
+				}
+				.card-image{
+
+				}
+			}
+		}
+	}
+
+	#footer {
+		#footer-left {  }
+		#footer-right {  }
+	}
+}
+
+// Phablet 400 < 700
+// Tablet 700 < 960
+// Desktop >960

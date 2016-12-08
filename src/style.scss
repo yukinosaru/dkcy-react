@@ -1,0 +1,425 @@
+/* Import WebFonts for use */
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,900);
+
+/* Standard image sizes (desktop)
+Hero Image: 1280x450px
+Highlight image: 635x450px
+Snippet Image: 371x225px
+Post Image: 1115x450px
+*/
+
+/* Set up SASS variables */
+$font-stack: Raleway, Helvetica, sans-serif;
+$font-size: 1.2em;    /* Assumes 1em = 16px; Used for normal text. Scaled up for e.g. headers */
+$primary-color: #000000;
+$secondary-color: #06c;
+$complement-color: #bbb;
+$subtle-color: #eee;
+$contrast-color: #06c;
+$background-color: #fff;
+$banner-color: #03A9F4;
+$title-color: #fff;
+$spacing: 8px;
+$standard-curve: cubic-bezier(0.4, 0.0, 0.2, 1);  // From Material design guidelines
+$desktop-image-height: 450px;
+$tablet-image-height: 300px;
+$mobile-image-height: 150px;
+
+@keyframes slide-in {
+	from {top: 20 * $spacing; }
+	to {top: 0px;}
+}
+
+// TO DO Legacy small mobile (<320)
+
+// Mobile (<480)
+
+@media screen and (min-width: 320px) {
+	body {
+		font-family: $font-stack;
+		font-weight: 400;
+		margin: 0;
+		padding: 0;
+	    font-size: 0.8 * $font-size;
+	    background: $subtle-color;
+	}
+
+	#header {
+		padding: $spacing*2 $spacing;
+		font-size: 1.5em;
+		font-weight: 700;
+		color: $background-color;
+		background-color: $banner-color;
+
+		#blog-title {
+			padding-left: 2*$spacing;
+			animation-name: fade-in;
+			animation-iteration-count: 1;
+			animation-timing-function: $standard-curve;
+			animation-duration: 400ms;
+		}
+
+		@keyframes fade-in {
+			from{ opacity: 0;}
+			to{ opacity: 1; }
+		}
+
+		#nav {
+			display: none;
+		}
+	}
+
+	#main {
+		box-sizing: border-box;
+		width: 100%;
+	    H1.title, H2.title {
+			margin-bottom: $spacing;
+			margin-top: 0px;
+			text-align: center;
+			text-transform: uppercase;
+		}
+		.meta {
+		    margin: $spacing 0px;
+		    text-align: center;
+		    color: $complement-color;
+		    font-size: 1.2em;
+		}
+
+		.read-more {
+			border-bottom: 2px solid;
+			border-color: $contrast-color;
+			display: inline-block;
+			cursor: pointer;
+		}
+
+		.read-more:hover { border-bottom: none; }
+
+		#hero-image {
+			height: $mobile-image-height;
+			overflow: hidden;
+			IMG {
+		  		display: none;
+			}
+			animation-name: fade-in;
+			animation-iteration-count: 1;
+			animation-timing-function: $standard-curve;
+			animation-duration: 600ms;
+		}
+
+		// For full posts
+		#full-post-container {
+			position: relative;
+		    margin: 0;
+		    background: $background-color;
+		    padding: 4 * $spacing 0px;
+		    animation-name: slide-in;
+			animation-iteration-count: 1;
+			animation-timing-function: $standard-curve;
+			animation-duration: 400ms;
+			H1.title {
+				font-size: 2.8em;
+				font-weight: 900;
+			}
+			H2.title {
+				font-size: 1.2em;
+				font-weight: 700;
+			}
+			P:hover { background-color: $subtle-color; cursor: pointer; }
+		}
+
+		.section-divider{
+			width: 200px;
+			border-bottom: $spacing/2 solid;
+			border-color: $contrast-color;
+			margin: $spacing auto;
+		}
+
+		.section-image {
+			width: 100%;
+			height: $mobile-image-height;
+			object-fit: cover;
+			object-position: center;
+		}
+
+		section {
+			padding: 2*$spacing 2*$spacing;
+			img {
+				width: 100%;
+				max-height: $mobile-image-height;
+				object-fit: cover; /* Scales image to fill element, maintains aspect ratio */
+				object-position: center; /* Center the image within the element */
+			}
+		}
+
+		// For blogs cards
+		.card-list {
+			margin-top: $spacing;
+			padding: 0;
+		}
+
+		.card-snippet-container,.card-highlight-container {
+			background: $background-color;
+			vertical-align: top;
+			width: 100%;
+			height: 300px;
+			padding: 0;
+			margin: $spacing 0;
+			overflow: hidden;
+			display: inline-block;
+			IMG {
+				height: 45%;
+				width: 100%;
+				object-fit: cover; /* Scales image to fill element, maintains aspect ratio */
+				object-position: center; /* Center the image within the element */
+			}
+
+			.card-content{
+				box-sizing: border-box;
+				width: 100%;
+				padding: 0 $spacing*4;
+				max-height: 43%;
+				overflow: hidden;
+				.title {
+					font-size: 1.2em;
+					font-weight: 700;
+					padding: 10% 0 0 0;
+					margin: 0;
+					text-align:left;
+					font-size: 1.4em;
+					font-weight: 900;
+				}
+				.meta{
+					text-align: left;
+					font-size: 1em;
+					display: none;
+				}
+				.wrapper{
+					display: none;
+					margin-bottom: $spacing * 2;
+					font-size: 0.9em;
+					max-height: inherit;
+					P {
+						margin:0;
+						max-height: inherit;
+					}
+				}
+			}
+			.read-more {
+				margin: $spacing $spacing*4;
+			}
+		}
+		.card-snippet-container:hover { background: $banner-color; cursor: pointer; }
+	}
+
+	#footer {
+		background-color: $banner-color;
+		padding: $spacing*2;
+		color: $background-color;
+		clear: both;
+		font-size: 0.8em;
+		A { color: inherit; }
+	}
+	#footer-right { float: right; text-align: right; }
+}
+
+// Phablets (480-700)
+@media screen and (min-width: 480px) {
+	#main{
+		.card-highlight-container {
+			box-sizing: border-box;
+			width: 100%;
+			height: 400px;
+			margin: 1% 0;
+			padding: 0 1%;
+
+			.card-image{
+				vertical-align: top;
+				background: $background-color;
+				display: inline-block;
+				box-sizing: border-box;
+				width: 54%;
+				height: 400px;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+			IMG {
+				width: 100%;
+				height: 100%;
+				object-fit: cover; /* Scales image to fill element, maintains aspect ratio */
+				object-position: center; /* Center the image within the element */
+			}
+
+			.card-content{
+				vertical-align: top;
+				background: $background-color;
+				display: inline-block;
+				box-sizing: border-box;
+				width: 45%;
+				max-height: 100%;
+				padding: 3%;
+				.title {
+					padding: 0 0 0;
+					margin: 0;
+					text-align:left;
+					font-size: 1.4em;
+					font-weight: 900;
+				}
+				.meta{
+					text-align: left;
+					font-size: 1em;
+
+				}
+				.wrapper{
+					display: initial;
+					margin-bottom: $spacing * 2;
+					font-size: 0.9em;
+					P {margin:0;}
+				}
+			}
+			.card-content:hover { background: $banner-color; }
+		}
+
+		.card-snippet-container {
+			margin: 1%;
+			height: 350px;
+			.card-content{
+				.meta { display: block; }
+				.wrapper{
+					display: initial;
+					margin-bottom: $spacing * 2;
+					font-size: 0.9em;
+					P {margin:0;}
+				}
+			}
+		}
+	}
+}
+
+// Tablet (700-960)
+@media screen and (min-width: 700px) {
+	#header {
+		#nav {
+			display: initial;
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding: $spacing;
+			margin: 0;
+			IMG { opacity: 0.6;}
+			IMG:hover { opacity: 1; }
+		}
+	}
+	#main {
+
+		.section-image {
+			height: $tablet-image-height;
+		}
+		.section-divider{ margin: 2 * $spacing auto; }
+
+		.card-highlight-container {
+			box-sizing: border-box;
+			width: 100%;
+			height: 400px;
+			margin: 1% $spacing;
+			padding: 0;
+
+			.card-image{
+				vertical-align: top;
+				background: $background-color;
+				display: inline-block;
+				box-sizing: border-box;
+				width: 54%;
+				height: 400px;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+			.card-image:hover {cursor: pointer;}
+
+			IMG {
+				width: 100%;
+				height: 100%;
+				object-fit: cover; /* Scales image to fill element, maintains aspect ratio */
+				object-position: center; /* Center the image within the element */
+			}
+
+			.card-content{
+				vertical-align: top;
+				background: $background-color;
+				display: inline-block;
+				box-sizing: border-box;
+				width: 45%;
+				max-height: 100%;
+				float: left;
+				padding: 3%;
+				.title {
+					padding: 0 0 0;
+					margin: 0;
+					text-align:left;
+					font-size: 1.4em;
+					font-weight: 900;
+				}
+				.meta{
+					text-align: left;
+					font-size: 1em;
+
+				}
+				.wrapper{
+					margin-bottom: $spacing * 2;
+					font-size: 0.9em;
+					P {margin:0;}
+				}
+			}
+			.card-content:hover { background: $banner-color; cursor: pointer; }
+		}
+
+		.card-snippet-container {
+			width: 31%;
+			margin: $spacing;
+		}
+		#hero-image { height: $tablet-image-height; }
+	}
+}
+
+// Desktops (>960px)
+@media screen and (min-width: 960px) {
+	body {
+	    font-size: $font-size;
+	}
+	#main {
+		#hero-image { height: $desktop-image-height; }
+		#full-post-container {
+		    margin-top: -10 * $spacing;
+		    margin-left: 10 * $spacing;
+		    margin-right: 10 * $spacing;
+		    padding: 8 * $spacing 0px;
+		}
+		.section-image { height: $desktop-image-height; }
+		.section-divider{ margin: 4 * $spacing auto; }
+		section { padding: 6*$spacing 16%; }
+
+		// For blogs cards
+		.card-list {
+			margin-top: -8%;
+			padding: 0 3%;
+		}
+		.card-highlight-container {
+			height: 450px;
+			.card-image{
+				height: 450px;
+			}
+
+			.card-content{
+				height: 450px;
+			}
+		}
+
+		.card-snippet-container {
+			height: 500px;
+			.card-content{
+				.content { display: block; }
+			}
+		}
+	}
+}

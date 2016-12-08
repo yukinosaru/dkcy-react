@@ -1,0 +1,338 @@
+/* Import WebFonts for use */
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,900);
+/* Standard image sizes (desktop)
+Hero Image: 1280x450px
+Highlight image: 635x450px
+Snippet Image: 371x225px
+Post Image: 1115x450px
+*/
+/* Set up SASS variables */
+/* Assumes 1em = 16px; Used for normal text. Scaled up for e.g. headers */
+@keyframes slide-in {
+  from {
+    top: 160px; }
+  to {
+    top: 0px; } }
+@media screen and (min-width: 320px) {
+  body {
+    font-family: Raleway, Helvetica, sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    font-size: 0.96em;
+    background: #eee; }
+
+  #header {
+    padding: 16px 8px;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+    background-color: #03A9F4; }
+    #header #blog-title {
+      padding-left: 16px;
+      animation-name: fade-in;
+      animation-iteration-count: 1;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      animation-duration: 400ms; }
+  @keyframes fade-in {
+    from {
+      opacity: 0; }
+    to {
+      opacity: 1; } }
+    #header #nav {
+      display: none; }
+
+  #main {
+    box-sizing: border-box;
+    width: 100%; }
+    #main H1.title, #main H2.title {
+      margin-bottom: 8px;
+      margin-top: 0px;
+      text-align: center;
+      text-transform: uppercase; }
+    #main .meta {
+      margin: 8px 0px;
+      text-align: center;
+      color: #bbb;
+      font-size: 1.2em; }
+    #main .read-more {
+      border-bottom: 2px solid;
+      border-color: #06c;
+      display: inline-block;
+      cursor: pointer; }
+    #main .read-more:hover {
+      border-bottom: none; }
+    #main #hero-image {
+      height: 150px;
+      overflow: hidden;
+      animation-name: fade-in;
+      animation-iteration-count: 1;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      animation-duration: 600ms; }
+      #main #hero-image IMG {
+        display: none; }
+    #main #full-post-container {
+      position: relative;
+      margin: 0;
+      background: #fff;
+      padding: 32px 0px;
+      animation-name: slide-in;
+      animation-iteration-count: 1;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      animation-duration: 400ms; }
+      #main #full-post-container H1.title {
+        font-size: 2.8em;
+        font-weight: 900; }
+      #main #full-post-container H2.title {
+        font-size: 1.2em;
+        font-weight: 700; }
+      #main #full-post-container P:hover {
+        background-color: #eee;
+        cursor: pointer; }
+    #main .section-divider {
+      width: 200px;
+      border-bottom: 4px solid;
+      border-color: #06c;
+      margin: 8px auto; }
+    #main .section-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      object-position: center; }
+    #main section {
+      padding: 16px 16px; }
+      #main section img {
+        width: 100%;
+        max-height: 150px;
+        object-fit: cover;
+        /* Scales image to fill element, maintains aspect ratio */
+        object-position: center;
+        /* Center the image within the element */ }
+    #main .card-list {
+      margin-top: 8px;
+      padding: 0; }
+    #main .card-snippet-container, #main .card-highlight-container {
+      background: #fff;
+      vertical-align: top;
+      width: 100%;
+      height: 300px;
+      padding: 0;
+      margin: 8px 0;
+      overflow: hidden;
+      display: inline-block; }
+      #main .card-snippet-container IMG, #main .card-highlight-container IMG {
+        height: 45%;
+        width: 100%;
+        object-fit: cover;
+        /* Scales image to fill element, maintains aspect ratio */
+        object-position: center;
+        /* Center the image within the element */ }
+      #main .card-snippet-container .card-content, #main .card-highlight-container .card-content {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 32px;
+        max-height: 43%;
+        overflow: hidden; }
+        #main .card-snippet-container .card-content .title, #main .card-highlight-container .card-content .title {
+          font-size: 1.2em;
+          font-weight: 700;
+          padding: 10% 0 0 0;
+          margin: 0;
+          text-align: left;
+          font-size: 1.4em;
+          font-weight: 900; }
+        #main .card-snippet-container .card-content .meta, #main .card-highlight-container .card-content .meta {
+          text-align: left;
+          font-size: 1em;
+          display: none; }
+        #main .card-snippet-container .card-content .wrapper, #main .card-highlight-container .card-content .wrapper {
+          display: none;
+          margin-bottom: 16px;
+          font-size: 0.9em;
+          max-height: inherit; }
+          #main .card-snippet-container .card-content .wrapper P, #main .card-highlight-container .card-content .wrapper P {
+            margin: 0;
+            max-height: inherit; }
+      #main .card-snippet-container .read-more, #main .card-highlight-container .read-more {
+        margin: 8px 32px; }
+    #main .card-snippet-container:hover {
+      background: #03A9F4;
+      cursor: pointer; }
+
+  #footer {
+    background-color: #03A9F4;
+    padding: 16px;
+    color: #fff;
+    clear: both;
+    font-size: 0.8em; }
+    #footer A {
+      color: inherit; }
+
+  #footer-right {
+    float: right;
+    text-align: right; } }
+@media screen and (min-width: 480px) {
+  #main .card-highlight-container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 400px;
+    margin: 1% 0;
+    padding: 0 1%; }
+    #main .card-highlight-container .card-image {
+      vertical-align: top;
+      background: #fff;
+      display: inline-block;
+      box-sizing: border-box;
+      width: 54%;
+      height: 400px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; }
+    #main .card-highlight-container IMG {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Scales image to fill element, maintains aspect ratio */
+      object-position: center;
+      /* Center the image within the element */ }
+    #main .card-highlight-container .card-content {
+      vertical-align: top;
+      background: #fff;
+      display: inline-block;
+      box-sizing: border-box;
+      width: 45%;
+      max-height: 100%;
+      padding: 3%; }
+      #main .card-highlight-container .card-content .title {
+        padding: 0 0 0;
+        margin: 0;
+        text-align: left;
+        font-size: 1.4em;
+        font-weight: 900; }
+      #main .card-highlight-container .card-content .meta {
+        text-align: left;
+        font-size: 1em; }
+      #main .card-highlight-container .card-content .wrapper {
+        display: initial;
+        margin-bottom: 16px;
+        font-size: 0.9em; }
+        #main .card-highlight-container .card-content .wrapper P {
+          margin: 0; }
+    #main .card-highlight-container .card-content:hover {
+      background: #03A9F4; }
+  #main .card-snippet-container {
+    margin: 1%;
+    height: 350px; }
+    #main .card-snippet-container .card-content .meta {
+      display: block; }
+    #main .card-snippet-container .card-content .wrapper {
+      display: initial;
+      margin-bottom: 16px;
+      font-size: 0.9em; }
+      #main .card-snippet-container .card-content .wrapper P {
+        margin: 0; } }
+@media screen and (min-width: 700px) {
+  #header #nav {
+    display: initial;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px;
+    margin: 0; }
+    #header #nav IMG {
+      opacity: 0.6; }
+    #header #nav IMG:hover {
+      opacity: 1; }
+
+  #main .section-image {
+    height: 300px; }
+  #main .section-divider {
+    margin: 16px auto; }
+  #main .card-highlight-container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 400px;
+    margin: 1% 8px;
+    padding: 0; }
+    #main .card-highlight-container .card-image {
+      vertical-align: top;
+      background: #fff;
+      display: inline-block;
+      box-sizing: border-box;
+      width: 54%;
+      height: 400px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; }
+    #main .card-highlight-container .card-image:hover {
+      cursor: pointer; }
+    #main .card-highlight-container IMG {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Scales image to fill element, maintains aspect ratio */
+      object-position: center;
+      /* Center the image within the element */ }
+    #main .card-highlight-container .card-content {
+      vertical-align: top;
+      background: #fff;
+      display: inline-block;
+      box-sizing: border-box;
+      width: 45%;
+      max-height: 100%;
+      float: left;
+      padding: 3%; }
+      #main .card-highlight-container .card-content .title {
+        padding: 0 0 0;
+        margin: 0;
+        text-align: left;
+        font-size: 1.4em;
+        font-weight: 900; }
+      #main .card-highlight-container .card-content .meta {
+        text-align: left;
+        font-size: 1em; }
+      #main .card-highlight-container .card-content .wrapper {
+        margin-bottom: 16px;
+        font-size: 0.9em; }
+        #main .card-highlight-container .card-content .wrapper P {
+          margin: 0; }
+    #main .card-highlight-container .card-content:hover {
+      background: #03A9F4;
+      cursor: pointer; }
+  #main .card-snippet-container {
+    width: 31%;
+    margin: 8px; }
+  #main #hero-image {
+    height: 300px; } }
+@media screen and (min-width: 960px) {
+  body {
+    font-size: 1.2em; }
+
+  #main #hero-image {
+    height: 450px; }
+  #main #full-post-container {
+    margin-top: -80px;
+    margin-left: 80px;
+    margin-right: 80px;
+    padding: 64px 0px; }
+  #main .section-image {
+    height: 450px; }
+  #main .section-divider {
+    margin: 32px auto; }
+  #main section {
+    padding: 48px 16%; }
+  #main .card-list {
+    margin-top: -8%;
+    padding: 0 3%; }
+  #main .card-highlight-container {
+    height: 450px; }
+    #main .card-highlight-container .card-image {
+      height: 450px; }
+    #main .card-highlight-container .card-content {
+      height: 450px; }
+  #main .card-snippet-container {
+    height: 500px; }
+    #main .card-snippet-container .card-content .content {
+      display: block; } }
+
+/*# sourceMappingURL=style.css.map */
