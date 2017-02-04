@@ -120,6 +120,7 @@ class SnippetPost extends React.Component{
 	changePage(){
 		this.props.setCurrentPost(this.props.post.id);
 		this.props.setBlogMode("FullPost");
+		window.history.pushState(history.state, "this.props.post.title.rendered", "/index.html?post_id=" + this.props.post.id);
 		ga('set', 'page', '/index.html?post_id=' + this.props.post.id);  // Sets new Google analytics page value
 		ga('send', 'pageview');  // Logs the page hit
 		console.log("GA hit logged");
@@ -152,6 +153,7 @@ class HighlightPost extends React.Component{
 	changePage(){
 		this.props.setCurrentPost(this.props.post.id);
 		this.props.setBlogMode("FullPost");
+		window.history.pushState(history.state, "this.props.post.title.rendered", "/index.html?post_id=" + this.props.post.id);
 		ga('set', 'page', '/index.html?post_id=' + this.props.post.id);  // Sets new Google analytics page value
 		ga('send', 'pageview');  // Logs the page hit
 		console.log("GA hit logged");
@@ -178,14 +180,26 @@ class HighlightPost extends React.Component{
 class Blog extends React.Component{
 	constructor(props){
 		super(props);
-// Insert code to change to FullPost if currentPost prop is set.
-		// var displayMode = "List";
-		// if(this.props.currentPost!="") { displayMode = "FullPost"; }
-		// TO FIX currentPost is an actual post object not just an id!
-		this.state = {
-			currentPost: this.props.currentPost,
-			displayMode: "List"
-		};
+
+		// Searches posts array for page_id requested (sent as prop to initial Blog component)
+		var postArray = this.props.posts;
+		var postId = this.props.postId;
+		var result = $.grep(postArray, function(e){ return e.id == postId; });
+
+		// TODO: Only searches most recent posts - need something to pull post from archives.
+		// Shows post if requested, otherwise shows list
+		if(result.length>0) {
+			this.state = {
+				currentPost: result[0],
+				displayMode: "FullPost"
+			};	
+		} else {
+			this.state = {
+				currentPost: null,
+				displayMode: "List"
+			};	
+		}
+
 		this.setCurrentPost = this.setCurrentPost.bind(this);
 		this.setBlogMode = this.setBlogMode.bind(this);
 	}
@@ -224,6 +238,8 @@ class Blog extends React.Component{
 				break;
 
 			default:
+				window.history.pushState(history.state, "this.props.post.title.rendered", "/index.html");
+
 				// Displays bloglist
 				this.props.posts.forEach(function(element, index) {
 					// Find first image tag in element.content.rendered
@@ -294,10 +310,11 @@ function getPosts(url){
     return obj;
 }
 
+var postId = getParameterByName('post_id');
+// TODO: If postId!=null then run a getPosts using the post_id - get most recents posts AND get requested post
 var posts = getPosts("http://www.dkcy.com/wp-json/wp/v2/posts/");
-var currentPost = getParameterByName('post_id');
 
 ReactDOM.render(
-	<Blog posts={posts} currentPost={currentPost} />,
+	<Blog posts={posts} postId={postId} />,
 	document.getElementById('main')
 );
